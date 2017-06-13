@@ -63,7 +63,7 @@
                             <div class="col-lg-4 col-md-4">
                                 <div class="form-group has-feedback">
                                     <label for="idpdv">ID PDV</label>
-                                    <input type="number" class="form-control" id="idpdv" name="idpdv" placeholder="Ingrese ID PDV" value="10588" required>
+                                    <input type="number" class="form-control" id="idpdv" name="idpdv" placeholder="Ingrese ID PDV" value="" required>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <div class="help-block with-errors"></div>
                                     <button type="button" style="margin-top: 5px;" class="btn btn-primary center-block"
