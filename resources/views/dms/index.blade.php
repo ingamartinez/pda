@@ -51,14 +51,13 @@
                                 <th> ID PDV </th>
                                 <th> Nombre del punto </th>
                                 <th> Circuito </th>
-                                <th> Codigo Sub </th>
-                                <th> Estado </th>
-                                <th> Asesor </th>
+                                <th> Asesor Encargado</th>
                                 <th> Supervisor </th>
                                 <th> # Sim Activas </th>
                                 <th> # Sim Sin Activar </th>
                                 <th> Visitado </th>
                                 <th> Ultima Visita </th>
+                                <th> Foto Fachada </th>
                                 <th>  </th>
                             </thead>
                             <tbody>
@@ -68,14 +67,13 @@
                                     <td>{{$dms->idpdv}}</td>
                                     <td>{{$dms->nombre_punto}}</td>
                                     <td>{{$dms->circuito}}</td>
-                                    <td>{{$dms->COD_SUB}}</td>
-                                    <td>{{$dms->ESTADO}}</td>
                                     <td>{{$dms->NOMBRE_ASESOR}}</td>
                                     <td>{{$dms->NOMBRE_SUPERVISOR}}</td>
                                     <td>{{$dms->cant_sim_activas}}</td>
                                     <td>{{$dms->cant_sim_sin_activar}}</td>
                                     <td>{{$dms->visitado}}</td>
                                     <td>{{$dms->ultimaVisita}}</td>
+                                    <td><a target="_blank" href="{{asset('imagenes/'.$dms->ruta_imagen1)}}"><img width="90" src="{{asset('imagenes/min/'.$dms->ruta_imagen1)}}" class="img-responsive"></a></td>
                                     <td><a href="{{url('/dms/'.$dms->idpdv)}}" class="btn btn-success"> Ver </a> </td>
                                 </tr>
                             @endforeach
@@ -105,7 +103,7 @@
                 info: true,
                 autoWidth: true,
                 order: [
-                    [10, "desc"]
+                    [9, "desc"]
                 ]
             });
         });

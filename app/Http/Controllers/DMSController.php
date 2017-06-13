@@ -29,8 +29,7 @@ class DMSController extends Controller
     public function dmsVisitado()
     {
         if (Auth::user()->for_roles_id === 1){
-            $dmss= DB::table('tabla_dms')
-                ->select(DB::raw('tabla_dms.*,MAX(log.updated_at) as ultimaVisita'))
+            $dmss= DMS::select(DB::raw('tabla_dms.*,MAX(log.updated_at) as ultimaVisita'))
                 ->join('log', 'log.tabla_dms_idpdv', '=', 'tabla_dms.idpdv')
                 ->join('for_users', 'log.for_users_id', '=', 'for_users.id')
                 ->where('for_users_id','=',Auth::user()->id)
@@ -81,11 +80,19 @@ class DMSController extends Controller
             return response()->json($dms);
         }
 
-        $logs = Log::where('tabla_dms_idpdv',$id)
-        ->where('for_users_id',Auth::user()->id)
-        ->get();
+        if (Auth::user()->for_roles_id === 1){
+            $logs = Log::where('tabla_dms_idpdv',$id)
+                ->where('for_users_id',Auth::user()->id)
+                ->get();
 
-        return view('dms.show',compact('dms','logs'));
+            return view('dms.show',compact('dms','logs'));
+        }else if (Auth::user()->for_roles_id === 2){
+            $logs = Log::where('tabla_dms_idpdv',$id)
+                ->get();
+
+            return view('dms.show',compact('dms','logs'));
+        }
+
     }
 
     /**

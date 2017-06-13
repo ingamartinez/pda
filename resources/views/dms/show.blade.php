@@ -110,6 +110,12 @@
                                 <input disabled type="text" class="form-control" id="estado" value="{{$dms->ESTADO}}">
                             </div>
                         </div>
+                        <div class="col-lg-3 col-md-4">
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <a class="form-control btn btn-success" target="_blank" href="{{asset('imagenes/'.$dms->ruta_imagen1)}}" >> Ver Foto Fachada <</a>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -135,8 +141,8 @@
 
                             <th> # </th>
                             <th> Nombre del Asesor </th>
-                            <th> Cantidad SimCard Activas</th>
-                            <th> Cantidad SimCard sin Activar</th>
+                            <th> # SimCard Activas (Dejó en el Punto)</th>
+                            <th> # SimCard sin Activar (Dejó en el Punto)</th>
                             <th> Fecha Visita </th>
                             </thead>
                             <tbody>
