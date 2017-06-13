@@ -16,7 +16,7 @@
         ===
     -->
     <meta charset="utf-8">
-    <title>Impulsadoras</title>
+    <title>PDA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Plantilla diseñada para el registro y seguimiento de ventas de las impulsadoras">
     <meta name="" content="Desarrollo Experto">
@@ -79,7 +79,7 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html"> <img alt="Charisma Logo" src="{{url('img/logo20.png')}}" class="hidden-xs"/>
-            <span>Impulsadora</span></a>
+            <span>PDA</span></a>
 
         <!-- user dropdown starts -->
         <div class="btn-group pull-right">

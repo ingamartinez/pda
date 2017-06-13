@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
+use Intervention\Image\Facades\Image;
 
 class DMSController extends Controller
 {
@@ -74,14 +75,17 @@ class DMSController extends Controller
      */
     public function show(Request $request,$id)
     {
+        $dms = Dms::where('idpdv',$id)->firstOrFail();
         if ($request->ajax()){
-            $dms = Dms::where('idpdv',$id)->firstOrFail();
 
             return response()->json($dms);
         }
 
+        $logs = Log::where('tabla_dms_idpdv',$id)
+        ->where('for_users_id',Auth::user()->id)
+        ->get();
 
-        return view('dms.show');
+        return view('dms.show',compact('dms','logs'));
     }
 
     /**
@@ -104,29 +108,40 @@ class DMSController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dms = Dms::findOrFail($id);
+        try{
+            $dms = Dms::findOrFail($id);
 
-        $sim_activas_nuevas = 0;
-        $sim_sin_activar_nuevas = 0;
+            $sim_activas_nuevas = 0;
+            $sim_sin_activar_nuevas = 0;
 
-        if ($request->input('agotado')==='S'){
-            $sim_activas_nuevas = (int) $request->input('sim_activas_nuevas');
-            $sim_sin_activar_nuevas = (int) $request->input('sim_sin_activar_nuevas');
+            if ($request->input('agotado')==='S'){
+                $sim_activas_nuevas = (int) $request->input('sim_activas_nuevas');
+                $sim_sin_activar_nuevas = (int) $request->input('sim_sin_activar_nuevas');
 
-            $dms->cant_sim_activas = (int) $request->input('sim_activas_actuales') + $sim_activas_nuevas;
-            $dms->cant_sim_sin_activar = (int) $request->input('sim_sin_activar_actuales') + $sim_sin_activar_nuevas;
+                $dms->cant_sim_activas = (int) $request->input('sim_activas_actuales') + $sim_activas_nuevas;
+                $dms->cant_sim_sin_activar = (int) $request->input('sim_sin_activar_actuales') + $sim_sin_activar_nuevas;
 
-        } else if ($request->input('agotado')==='N'){
-            $dms->cant_sim_activas = (int) $request->input('sim_activas_actuales');
-            $dms->cant_sim_sin_activar = (int) $request->input('sim_sin_activar_actuales');
+            } else if ($request->input('agotado')==='N'){
+                $dms->cant_sim_activas = (int) $request->input('sim_activas_actuales');
+                $dms->cant_sim_sin_activar = (int) $request->input('sim_sin_activar_actuales');
+            }
+
+            $ruta=$dms->idpdv.'_fachada_'.$dms->nombre_punto.'.jpg';
+            Image::make($request->file('img_fachada'))->save('imagenes/'.$ruta);
+            Image::make($request->file('img_fachada'))->resize(100, 50)->save('imagenes/min/'.$ruta);
+            $dms->ruta_imagen1 = $ruta;
+
+            $dms->visitado='S';
+            $dms->save();
+
+            $this->registrarLog($dms->idpdv,Auth::user()->id,$sim_activas_nuevas,$sim_sin_activar_nuevas);
+
+            return redirect()->back()->with('mensajeExito', 'Se Guardo correctamente');
+
+        } catch (\Exception $ex){
+            return back()->with('mensaje', 'Error al guardar - '.$ex->getMessage());
         }
 
-        $dms->visitado='S';
-        $dms->save();
-
-        $this->registrarLog($dms->idpdv,Auth::user()->id,$sim_activas_nuevas,$sim_sin_activar_nuevas);
-
-        return response()->json($dms,'200');
     }
 
 
@@ -148,8 +163,8 @@ class DMSController extends Controller
             $log->save();
 
             return true;
-        }catch (Exception $ex){
-            return false;
+        }catch (\Exception $ex){
+            throw new Exception('No se pudo guardar el Log');
         }
 
     }

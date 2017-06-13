@@ -41,9 +41,9 @@
         </div>
     @endif
 
-    <form method="POST" action="{{route('dms.store')}}" id="formRegistrarVentas" role="form" data-toggle="validator" autocomplete="off">
+    <form method="POST" action="#" id="formRegistrarVentas" role="form" data-toggle="validator" autocomplete="off" enctype="multipart/form-data">
 
-        {{method_field('POST')}}
+        {{method_field('PUT')}}
 
         <div class="row">
             <div class="box col-md-12">
@@ -143,7 +143,7 @@
             <div class="box col-md-12">
                 <div class="box-inner">
                     <div class="box-header well" data-original-title="">
-                        <h2><i class="glyphicon glyphicon-star"></i> Preguntas al Punto de Venta</h2>
+                        <h2><i class="glyphicon glyphicon-star"></i> Preguntas al Punto de Venta - Parte 1</h2>
 
                         <div class="box-icon">
                             <a href="#" class="btn btn-minimize btn-round btn-default"><i
@@ -213,6 +213,33 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/row-->
+
+        <div class="row">
+            <div class="box col-md-12">
+                <div class="box-inner">
+                    <div class="box-header well" data-original-title="">
+                        <h2><i class="glyphicon glyphicon-star"></i> Preguntas al Punto de Venta - Parte 2</h2>
+
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                        class="glyphicon glyphicon-chevron-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4">
+                                <div class="form-group has-feedback">
+                                    <label for="img_fachada">Foto #1 Fachada</label>
+                                    <input id="img_fachada" name="img_fachada" accept="image/*" type="file" capture="" required>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
                         <button type="submit" form="formRegistrarVentas" class="btn btn-success">Guardar</button>
                     </div>
                 </div>
@@ -255,10 +282,13 @@
 
                 $('#sim_sin_activar_actuales').val(data.cant_sim_sin_activar);
                 $('#sim_activas_actuales').val(data.cant_sim_activas);
+
+                $('#formRegistrarVentas').attr('action','{{url('dms')}}/'+idpdv);
             },
             error: function (qXHR, textStatus, errorThrown) {
 //                    console.reportes(qXHR.status,textStatus,errorThrown);
                 limpiarPuntoDeVenta();
+                $('#formRegistrarVentas').attr('action','#');
                 swal(
                     'IDPDV no Encontrado',
                     'Por favor validar si el IDPDV fue ingresado correctamente',
@@ -304,36 +334,36 @@
         }
     });
 
-    $('#formRegistrarVentas').on('submit',function (e) {
-        e.preventDefault();
-        var idpdv = $('#idpdv').val();
+    {{--$('#formRegistrarVentas').on('submit',function (e) {--}}
+        {{--e.preventDefault();--}}
+        {{--var idpdv = $('#idpdv').val();--}}
 
-        $.ajax({
-            type: 'PUT',
-            url: '{{url('dms')}}/' + idpdv,
-            data: $(this).serialize(),
-            success: function (data) {
-                swal(
-                    'Bien',
-                    'Se ha registrado correctamente',
-                    'success'
-                ).then(function () {
-                    location.reload();
-                });
-            },
-            error: function (qXHR, textStatus, errorThrown) {
-//                    console.reportes(qXHR.status,textStatus,errorThrown);
-                swal(
-                    'Ohh',
-                    'No se ha podido registrar la visita',
-                    'error'
-                ).then(function () {
-                    location.reload();
-                });
-            }
-        });
+        {{--$.ajax({--}}
+            {{--type: 'PUT',--}}
+            {{--url: '{{url('dms')}}/' + idpdv,--}}
+            {{--data: $(this).serialize(),--}}
+            {{--success: function (data) {--}}
+                {{--swal(--}}
+                    {{--'Bien',--}}
+                    {{--'Se ha registrado correctamente',--}}
+                    {{--'success'--}}
+                {{--).then(function () {--}}
+                    {{--location.reload();--}}
+                {{--});--}}
+            {{--},--}}
+            {{--error: function (qXHR, textStatus, errorThrown) {--}}
+{{--//                    console.reportes(qXHR.status,textStatus,errorThrown);--}}
+                {{--swal(--}}
+                    {{--'Ohh',--}}
+                    {{--'No se ha podido registrar la visita',--}}
+                    {{--'error'--}}
+                {{--).then(function () {--}}
+                    {{--location.reload();--}}
+                {{--});--}}
+            {{--}--}}
+        {{--});--}}
 
-    });
+    {{--});--}}
 
 
 

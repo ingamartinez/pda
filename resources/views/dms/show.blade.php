@@ -47,67 +47,67 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="idpdv">ID PDV</label>
-                                <input disabled type="text" class="form-control" id="idpdv">
+                                <input disabled type="text" class="form-control" id="idpdv" value="{{$dms->idpdv}}">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="cod_sub">Codigo Sub</label>
-                                <input disabled type="text" class="form-control" id="cod_sub">
+                                <input disabled type="text" class="form-control" id="cod_sub" value="{{$dms->COD_SUB}}">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="nombre">Nombre del Punto de Venta</label>
-                                <input disabled type="text" class="form-control" id="nombre">
+                                <input disabled type="text" class="form-control" id="nombre" value="{{$dms->nombre_punto}}">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="circuito">Circuito</label>
-                                <input disabled type="text" class="form-control" id="circuito">
+                                <input disabled type="text" class="form-control" id="circuito" value="{{$dms->circuito}}">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="vendedor">Vendedor</label>
-                                <input disabled type="text" class="form-control" id="vendedor">
+                                <input disabled type="text" class="form-control" id="vendedor" value="{{$dms->NOMBRE_ASESOR}}">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="tipo_punto">Tipo de Punto</label>
-                                <input disabled type="text" class="form-control" id="tipo_punto">
+                                <input disabled type="text" class="form-control" id="tipo_punto" value="{{$dms->TIPO_PUNTO}}">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="epin">Servicio EPIN</label>
-                                <input disabled type="text" class="form-control" id="epin">
+                                <input disabled type="text" class="form-control" id="epin" value="{{$dms->SERV_EPIN}}">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="simcard">Servicio SIMCARD</label>
-                                <input disabled type="text" class="form-control" id="simcard">
+                                <input disabled type="text" class="form-control" id="simcard" value="{{$dms->SERV_SIMCARD}}">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="tigo_gestion">Servicio TIGO GESTION</label>
-                                <input disabled type="text" class="form-control" id="tigo_gestion">
+                                <input disabled type="text" class="form-control" id="tigo_gestion" value="{{$dms->SERV_MBOX}}">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="zona">Zona</label>
-                                <input disabled type="text" class="form-control" id="zona">
+                                <input disabled type="text" class="form-control" id="zona" value="{{$dms->CIUDAD}}">
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-4">
                             <div class="form-group">
                                 <label for="estado">Estado</label>
-                                <input disabled type="text" class="form-control" id="estado">
+                                <input disabled type="text" class="form-control" id="estado" value="{{$dms->ESTADO}}">
                             </div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
         <div class="box col-md-12">
             <div class="box-inner">
                 <div class="box-header well" data-original-title="">
-                    <h2><i class="glyphicon glyphicon-star"></i> Listado de Go Blue</h2>
+                    <h2><i class="glyphicon glyphicon-star"></i> Edición historico</h2>
 
                     <div class="box-icon">
                         <a href="#" class="btn btn-minimize btn-round btn-default"><i
@@ -134,37 +134,21 @@
                             <thead>
 
                             <th> # </th>
-                            <th> ID PDV </th>
-                            <th> Nombre del punto </th>
-                            <th> Circuito </th>
-                            <th> Codigo Sub </th>
-                            <th> Estado </th>
-                            <th> Asesor </th>
-                            <th> Supervisor </th>
-                            <th> # Sim Activas </th>
-                            <th> # Sim Sin Activar </th>
-                            <th> Visitado </th>
-                            <th> Ultima Visita </th>
-                            <th>  </th>
+                            <th> Nombre del Asesor </th>
+                            <th> Cantidad SimCard Activas</th>
+                            <th> Cantidad SimCard sin Activar</th>
+                            <th> Fecha Visita </th>
                             </thead>
                             <tbody>
-                            {{--@foreach($dmss as $dms)--}}
-                                {{--<tr data-id="{{$dms->id}}">--}}
-                                    {{--<td>{{$dms->id}}</td>--}}
-                                    {{--<td>{{$dms->idpdv}}</td>--}}
-                                    {{--<td>{{$dms->nombre_punto}}</td>--}}
-                                    {{--<td>{{$dms->circuito}}</td>--}}
-                                    {{--<td>{{$dms->COD_SUB}}</td>--}}
-                                    {{--<td>{{$dms->ESTADO}}</td>--}}
-                                    {{--<td>{{$dms->NOMBRE_ASESOR}}</td>--}}
-                                    {{--<td>{{$dms->NOMBRE_SUPERVISOR}}</td>--}}
-                                    {{--<td>{{$dms->cant_sim_activas}}</td>--}}
-                                    {{--<td>{{$dms->cant_sim_sin_activar}}</td>--}}
-                                    {{--<td>{{$dms->visitado}}</td>--}}
-                                    {{--<td>{{$dms->ultimaVisita}}</td>--}}
-                                    {{--<td><a href="{{url('/dms/'.$dms->idpdv)}}" class="btn btn-success"> Ver </a> </td>--}}
-                                {{--</tr>--}}
-                            {{--@endforeach--}}
+                            @foreach($logs as $log)
+                                <tr data-id="{{$log->id}}">
+                                    <td>{{$log->id}}</td>
+                                    <td>{{$log->user->nombre}}</td>
+                                    <td>{{$log->repo_cant_sim_activas}}</td>
+                                    <td>{{$log->repo_cant_sim_sin_activar}}</td>
+                                    <td>{{$log->updated_at}}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -191,7 +175,7 @@
                 info: true,
                 autoWidth: true,
                 order: [
-                    [10, "desc"]
+                    [4, "desc"]
                 ]
             });
         });
