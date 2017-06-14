@@ -10,7 +10,7 @@
             @if(auth()->user()->for_roles_id===1)
             <li><a href="{{url('logger/create')}}"><i class="glyphicon glyphicon-eye-open"></i> Registrar Visita</a></li>
             @endif
-            <li><a href="{{url('dms-visitado')}}"><i class="glyphicon glyphicon-search"></i> DMS Visitado</a></li>
+            <li><a href="{{url('dms-visitado')}}"><i class="glyphicon glyphicon-search"></i> Puntos Visitados</a></li>
             <li><a href="{{url('dms')}}"><i class="glyphicon glyphicon-search"></i> Consultar DMS</a></li>
 
             @if(auth()->user()->for_roles_id===2)

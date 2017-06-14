@@ -12,7 +12,7 @@
                 <a href="{{url('/')}}">Inicio</a>
             </li>
             <li>
-                <a href="{{url('goblue')}}">Listar Go Blue</a>
+                <a href="{{url('goblue')}}">Listar Puntos PDAS</a>
             </li>
         </ul>
     </div>

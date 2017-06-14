@@ -100,7 +100,7 @@
         <div class="btn-group pull-right theme-container animated tada">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <i class="glyphicon glyphicon-tint"></i><span
-                        class="hidden-sm hidden-xs"> Change Theme / Skin</span>
+                        class="hidden-sm hidden-xs">Cambiar Estilo</span>
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" id="themes">
